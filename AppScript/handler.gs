@@ -17,7 +17,7 @@ const uids = sheet.getRange("A" + topMarginNum + ":A")
 const nicknames = sheet.getRange("B" + topMarginNum + ":A")
 const rewards = sheet.getRange("C" + leftMargin + ":Z" + leftMargin)
 
-let updateLock = LockService.getScriptLock()
+// let updateLock = LockService.getScriptLock()
 
 /*
 GET returns the list of the roulette rewards available in the fixed range of the columns
@@ -48,7 +48,7 @@ function doPost(e) {
   // let jsonData = JSON.parse(`{"uid": "111111111231", "nickname": "ddddddd", "result": "움짤방셀" }`);
 
   if (jsonData !== null) {
-    updateLock.tryLock(600000)
+    // updateLock.tryLock(600000)
     
     targetId = jsonData[paramKey_id]
     targetNickname = jsonData[paramKey_nickname]
@@ -79,8 +79,8 @@ function doPost(e) {
       targetCell.setValue(1)
     }
     
-    SpreadsheetApp.flush()
-    updateLock.releaseLock()
+    // SpreadsheetApp.flush()
+    // updateLock.releaseLock()
   }
   
   // send response to notify the client upon completion

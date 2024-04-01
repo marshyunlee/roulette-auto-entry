@@ -29,7 +29,7 @@ window.onload = async () => {
 			selectElem.add(option)
 		})
 
-		await cookie.remove(dataKey)
+		// await cookie.remove(dataKey)
 		let jsonData = await cookie.get(dataKey)
 		if (jsonData) {
 			recordsList = JSON.parse(jsonData).records
@@ -63,9 +63,9 @@ recordButtonElem.onclick = async () => {
 	const uid = userIdElem.value.trim()
 	const nickname = nicknameElem.value.trim()
 	const result = selectElem.value.trim()
-
+	let now = new Date()
 	let elem = [
-		new Date().toLocaleString('ko-KR', { timeZoneName: 'short' }),
+		now.getTime() + " : " + now.toLocaleString('ko-KR', { timeZoneName: 'short' }),
 		uid,
 		nickname,
 		result

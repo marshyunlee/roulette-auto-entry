@@ -29,7 +29,7 @@ window.onload = async () => {
 			selectElem.add(option)
 		})
 
-		// await cookie.remove(dataKey)
+		await cookie.remove(dataKey)
 		let jsonData = await cookie.get(dataKey)
 		if (jsonData) {
 			recordsList = JSON.parse(jsonData).records
@@ -77,9 +77,7 @@ recordButtonElem.onclick = async () => {
 	recordsList = [elem, ...recordsList]
     cookie.set(dataKey, JSON.stringify({ records: recordsList }))
 
-
-	// TODO Then send the post reques
-	await postData(userIdElem.value)
+	await postData(userIdElem.value, nicknameElem.value, selectElem.value)
 
 	recordButtonElem.classList.remove('is-loading')
 	enableElem(recordButtonElem)
@@ -89,10 +87,9 @@ recordButtonElem.onclick = async () => {
 // ========== helpers ==========
 const validateReouletteRecord = () => {
 	const uid = userIdElem.value.trim()
-	const nickname = nicknameElem.value.trim()
 	const reward = selectElem.value.trim()
 	
-	if (reward && (uid !== "" || nickname !== "")) {
+	if (reward && uid !== "") {
 		return true
 	}
 
@@ -128,7 +125,6 @@ const postData = async (uid, nickname, result) => {
         }
         let response = await requestPromise(options)
 		// TODO - err/data check
-		console.log(response)
         return response
     } catch (err) {
         console.log("Error occured during roulette data posting. error=" + err.toString())

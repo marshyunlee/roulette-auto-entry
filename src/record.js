@@ -8,6 +8,7 @@ const selectElem = document.getElementById("roulette-option")
 const warningElem = document.getElementById("result_entry_warning")
 const recordButtonElem = document.getElementById("record_button")
 
+const MAX_COOKIE_LIMIT = 50
 const dataKey = "data"
 const webappCookieKey = "webapp"
 const webappURL = await cookie.get(webappCookieKey)
@@ -32,6 +33,7 @@ window.onload = async () => {
 		// await cookie.remove(dataKey)
 		let jsonData = await cookie.get(dataKey)
 		if (jsonData) {
+			console.log(jsonData.length)
 			recordsList = JSON.parse(jsonData).records
 		}
 
@@ -73,8 +75,9 @@ recordButtonElem.onclick = async () => {
 	
 	table.row.add(elem).draw();
     
-	// cookie the records
+	// cookie the records + limit to the max config
 	recordsList = [elem, ...recordsList]
+	recordsList = recordsList.slice(0, MAX_COOKIE_LIMIT);
     cookie.set(dataKey, JSON.stringify({ records: recordsList }))
 
 	await postData(userIdElem.value, nicknameElem.value, selectElem.value)

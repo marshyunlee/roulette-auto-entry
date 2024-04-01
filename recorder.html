@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html class="has-background-grey-dark">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afreehp Roulette Recorder</title>
+    <link rel="stylesheet" href="./css/bulma.min.css" />
+    <script src='bundle.js'></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+</head>
+
+<style>
+    ::-webkit-scrollbar
+        {
+            width: 0px
+        }
+</style>
+
+<body>
+    <div class="container m-3">
+        <h1 class="title has-text-light">룰렛 기록기</h1>
+
+        <div class="field">
+            <label class="label has-text-light is-size-5">닉네임 혹은 아이디 둘 중 하나는 필수입력</label>
+            <div class="field has-addons">
+                <p class="control">
+                    <input class="input" id="uid" placeholder="아이디">
+                </p>
+                <p class="control">
+                    <input class="input" id="nickname" placeholder="닉네임">
+                </p>
+                
+                <p class="control">
+                    <div class="select is-multiple">
+                        <select id="roulette-option">
+                        </select>
+                    </div>
+                </p>
+                
+                <p class="control">
+                    <button class="button is-info" id="record_button">기록</button>
+                </p>
+            </div>
+            <div class="block">
+                <p class="help is-danger is-size-4" style="display:none" id="result_entry_warning">유저와 룰렛 결과를 입력해 주세요</p>
+            </div>
+        </div>
+
+        <hr class="dashed">
+        <h1 class="title has-text-light">입력 기록</h1>
+        <div class="field has-text-light stripe row-border">
+            <table id="historyTable" class="display has-background-grey-light has-text-dark is-size-5">
+                <thead>
+                    <tr>
+                        <th>입력시간</th>
+                        <th>유저 아이디</th>
+                        <th>닉네임</th>
+                        <th>룰렛 결과</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+<script type="module" src='./src/record.js'></script>
+
+</html>

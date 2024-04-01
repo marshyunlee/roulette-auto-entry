@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="has-background-grey-dark">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afreehp Roulette Recorder</title>
+    <link rel="stylesheet" href="./css/bulma.min.css" />
+    <script src='bundle.js'></script>
+</head>
+
+<style>
+    ::-webkit-scrollbar
+        {
+            width: 0px
+        }
+</style>
+
+<body>
+    <div class="container m-3">
+        <h1 class="title has-text-light">룰렛 기록기</h1>
+
+        <div class="field">
+            <label class="label has-text-light">아프리카도우미 룰렛정보 주소 - 현재 안쓰임</label>
+            <div class="control">
+                <input disabled class="input" id="afreehp_url" placeholder="e.g. http://afreehp.kr/slot/...">
+            </div>
+            <div class="block">
+                <p class="help is-danger is-size-5" style="display:none" id="invalid_afreehp_warning">잘못된 아프리카도우미 룰렛정보 주소입니다</p>
+            </div>
+
+            <label class="label has-text-light">구글 시트 웹앱 API 주소*</label>
+            <div class="control">
+                <input class="input" id="webapp_url" placeholder="e.g. https://script.goo...">
+            </div>
+            <div class="block">
+                <p class="help is-danger is-size-5" style="display:none" id="invalid_api_warning">잘못된 구글시트 API 주소입니다</p>
+            </div>
+        </div>
+
+        <a class="control">
+            <button class="button is-info" id="start_button">실행</button>
+        </a>
+    </div>
+</body>
+
+<script src='./src/index.js'></script>
+
+</html>

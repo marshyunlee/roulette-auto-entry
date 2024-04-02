@@ -16,7 +16,6 @@ const webappURL = await cookie.get(webappCookieKey)
 var table = null
 var recordsList = []
 
-var xhr = new XMLHttpRequest()
 
 // ========== session IO ==========
 window.onload = async () => {
@@ -67,7 +66,7 @@ recordButtonElem.onclick = async () => {
 	const result = selectElem.value.trim()
 	let now = new Date()
 	let elem = [
-		now.getTime() + " : " + now.toLocaleString('ko-KR', { timeZoneName: 'short' }),
+		now.getTime() + " -> " + now.toLocaleString(),
 		uid,
 		nickname,
 		result

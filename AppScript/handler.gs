@@ -17,7 +17,7 @@ const uids = sheet.getRange("A" + topMarginNum + ":A")
 const nicknames = sheet.getRange("B" + topMarginNum + ":A")
 const rewards = sheet.getRange("C" + leftMargin + ":Z" + leftMargin)
 
-// let updateLock = LockService.getScriptLock()
+let updateLock = LockService.getScriptLock()
 
 /*
 GET returns the list of the roulette rewards available in the fixed range of the columns
@@ -45,10 +45,10 @@ function doPost(e) {
 
   let jsonString = e.postData.getDataAsString();
   let jsonData = JSON.parse(jsonString);
-  // let jsonData = JSON.parse(`{"uid": "111111111231", "nickname": "ddddddd", "result": "움짤방셀" }`);
+  // let jsonData = JSON.parse(`{"uid": "zxcvzc", "nickname": "ddddddd", "result": "지건" }`);
 
   if (jsonData !== null) {
-    // updateLock.tryLock(600000)
+    updateLock.tryLock(600000)
     
     targetId = jsonData[paramKey_id]
     targetNickname = jsonData[paramKey_nickname]
@@ -79,8 +79,8 @@ function doPost(e) {
       targetCell.setValue(1)
     }
     
-    // SpreadsheetApp.flush()
-    // updateLock.releaseLock()
+    SpreadsheetApp.flush()
+    updateLock.releaseLock()
   }
   
   // send response to notify the client upon completion
@@ -90,18 +90,18 @@ function doPost(e) {
 
 function findUser(uid) {
   let targetRange = uids.getValues()
-  let cnt = 0
+  let empty = 0
   for (let i = 0; i < targetRange.length; i++) {
     let val = targetRange[i].shift()
-    if (val.toString().trim() == uid) {
+    if (val.toString().replace(/[\s()]/g, '') == uid.replace(/[\s()]/g, '')) {
       return i + topMargin + 1
     }
 
-    if (val != "") {
-      cnt++
+    if (empty === 0 && val == "") {
+      empty = i + topMargin + 1
     }
   }
-  return cnt + topMargin + 1
+  return empty
 }
 
 // !!!!!!!!! deprecated !!!!!!!!!!
